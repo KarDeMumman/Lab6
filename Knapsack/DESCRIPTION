@@ -4,7 +4,7 @@ Title: Algorithms for solving the Knapsack problem.
 Version: 1.0
 Date: 2019-10-07
 Author: Nastaran Meftahi and Sarah Alsaadi
-Maintainer: W<sarah.walid.alsaadi@liu.se>, <nasme581@ad.liu.se>
+Maintainer: <sarah.walid.alsaadi@liu.se>, <nasme581@ad.liu.se>
 Description: The algorithms used of solving the knapsack problem are the brute force search, dynamic programming and the greedy heuristic.
 License: MIT License
 RoxygenNote: 6.1.1
