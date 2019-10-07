@@ -1,6 +1,6 @@
 language: r
 cache: packages
-#install:
-  #- Rscript -e 'install.packages(c("devtools","roxygen2","testthat"));devtools::install_deps("Lab6")'
-#script:
-  #- Rscript -e 'devtools::check("Lab6")'
+install:
+  - Rscript -e 'install.packages(c("devtools","roxygen2","testthat"));devtools::install_deps("Knapsack")'
+script:
+  - Rscript -e 'devtools::check("Knapsack")'
