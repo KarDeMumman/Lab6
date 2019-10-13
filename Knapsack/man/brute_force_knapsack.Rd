@@ -10,6 +10,8 @@ brute_force_knapsack(x, W, parallel = FALSE)
 \item{x}{A dataframe with weights (w) and values (v).}
 
 \item{W}{the knapsack size.}
+
+\item{parallel}{Use parallelized implementation if set to TRUE.}
 }
 \value{
 a list with the maximum value and the indexes of the elements that compose this optimal solution

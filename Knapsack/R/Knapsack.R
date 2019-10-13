@@ -181,6 +181,6 @@ greedy_knapsack<-function(x,W)
     }
     
   }
-  return(list(value=best_value, elements=best_elements))
+  return(list(value=round(best_value), elements=best_elements))
 }
 
