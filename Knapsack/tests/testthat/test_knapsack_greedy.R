@@ -1,5 +1,6 @@
 context("greedy_knapsack")
 
+suppressWarnings(RNGversion("3.5.9"))
 set.seed(42)
 n <- 2000
 knapsack_objects <- data.frame(
