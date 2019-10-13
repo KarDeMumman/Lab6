@@ -4,7 +4,7 @@
 \alias{brute_force_knapsack}
 \title{Solve the 0-1 knapsack problem (brute force approach)}
 \usage{
-brute_force_knapsack(x, W)
+brute_force_knapsack(x, W, parallel = FALSE)
 }
 \arguments{
 \item{x}{A dataframe with weights (w) and values (v).}

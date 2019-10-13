@@ -5,9 +5,10 @@
 #' Solve the 0-1 knapsack problem (brute force approach)
 #' @param x A dataframe with weights (w) and values (v).
 #' @param W the knapsack size.
+#' @param parallel Use parallelized implementation if set to TRUE.
 #' @return a list with the maximum value and the indexes of the elements that compose this optimal solution 
 
-brute_force_knapsack<-function(x,W)
+brute_force_knapsack<-function(x,W,parallel=FALSE)
 {
   stopifnot(is.data.frame(x))
   stopifnot(length(x) == 2)
@@ -21,23 +22,52 @@ brute_force_knapsack<-function(x,W)
   stopifnot(all(v > 0))
   
   n<-nrow(x)
+  cases <- 2^n
   
   best_value<-0
   best_elements<-c()
-  for (i in 1:2^n)
-  {
-    elements<-as.integer(intToBits(i))[1:n]
-    weight<-elements %*% w
-    value<-elements %*% v
-    if (weight <= W && value > best_value) 
+  if(parallel == FALSE){
+    for (i in 1:cases)
     {
-      best_value<-value
-      best_elements<-elements
+      elements<-as.integer(intToBits(i))[1:n]
+      weight<-elements %*% w
+      value<-elements %*% v
+      if (weight <= W && value > best_value)
+      {
+        best_value<-value
+        best_elements<-elements
+      }
     }
+    
+    m<-list(value=as.numeric(best_value),elements=which(best_elements == 1))
+    
+    return(m)
+  }else{
+    requireNamespace("parallel")
+    cores <- parallel::detectCores()
+    clusertes <-parallel::makeCluster(cores)
+    best_cases <- parallel::parLapply(cl=clusertes, X = 1:n, fun = function(m){combn(rownames(x), m, paste0, collapse = " ")
+    })
+    best_weights <- parallel::parLapplyLB(cl=clusertes, X = 1:n, fun =  function(m) {
+      combn(w, m, sum)
+      
+    })
+    best_values <- parallel::parLapplyLB(cl=clusertes,X = 1:n, fun =  function(m) {
+      combn(v, m , sum)
+      
+    })
+    
+    parallel::stopCluster(clusertes)
+    
+    best_cases_ <- unlist(best_cases)
+    best_weights_ <- unlist(best_weights)
+    best_values_ <- unlist(best_values)
+    
+    best_value <- max(best_values_[which(best_weights_ <= W)])
+    
+    elem <- best_cases_[which(best_values_ == best_value)]
+    m<-list(value=as.numeric(best_value),elements=as.numeric(strsplit(elem, " ")[[1]]))
   }
-
-  m<-list(value=as.numeric(best_value),elements=which(best_elements == 1))
-  
   return(m)
 }
 
