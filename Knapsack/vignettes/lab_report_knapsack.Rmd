@@ -64,4 +64,12 @@ Answer:
 
 Question: What performance gain could you get by parallelizing the brute force search?
 
-Answer: 
+Answer: bruteforce: 1.905 sec elapsed
+
+```{r eval=FALSE}
+tic("bruteforce")
+bfk <- brute_force_knapsack(x = knapsack_objects[1:16,], W = 3500, parallel = TRUE)
+toc()
+```
+
+As seen above, the time for the parallel implementation is higher than before. We don't know if this might have to do with the overhead introduced by the calls to the parallel package or something in our particular implementation.
