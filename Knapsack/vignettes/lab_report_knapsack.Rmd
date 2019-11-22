@@ -58,7 +58,20 @@ toc()
 
 Question: What performance gain could you get by trying to improve your code?
 
-Answer: 
+Answer: We have used the profvis package to profile our code for all 3 approaches (see R/profiling/profvis.R). Since the code was fairly simple/straight forward, we didn't manage to optimize it any further. However, the profiling tool showed us where most of the time is spent.
+
+### Brute force
+
+In the brute force approach, the most time consuming is the line 
+```{r eval=FALSE} elements<-as.integer(intToBits(i))[1:n]```. We tried to find a better way to do this, but we were unsuccessful.
+
+### Dynamic programming
+
+In the dynaminc programming approach, most of the time is spent on lines 28 and 35 (see the dynamicprogramming-profile.Rprofvis in the vignettes folder). However, we didn't manage to write faster code in this case either.
+
+### Greedy approach
+
+The greedy approach is generally very fast. No improvements were found.
 
 ## Parallelize brute force
 

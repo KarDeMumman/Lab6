@@ -47,7 +47,7 @@ profvis({
 profvis({
   pause(0.01)
   
-  x = knapsack_objects[1:8,]
+  x = knapsack_objects[1:16,]
   W = 3500
   stopifnot(is.data.frame(x))
   stopifnot(length(x) == 2)
@@ -88,7 +88,7 @@ profvis({
 profvis({
   pause(0.01)
   
-  x = knapsack_objects[1:12,]
+  x = knapsack_objects[1:500,]
   W = 2000
   stopifnot(is.data.frame(x))
   w<-x[,1]
