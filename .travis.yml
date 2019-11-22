@@ -1,6 +1,6 @@
 language: r
 cache: packages
 install:
-  - Rscript -e 'install.packages(c("devtools","roxygen2","testthat"));devtools::install_deps("Knapsack")'
+  - Rscript -e 'install.packages(c("devtools","roxygen2","testthat", "knitr", "rmarkdown"));devtools::install_deps("Knapsack")'
 script:
   - Rscript -e 'devtools::check("Knapsack")'
