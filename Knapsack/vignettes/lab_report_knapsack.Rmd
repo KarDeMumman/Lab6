@@ -1,0 +1,67 @@
+---
+title: "lab_report_knapsack"
+author: "Sarah Alsaadi and Nastaran Meftahi"
+date: "11/22/2019"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{API-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Lab Report Knapsack
+
+This vignette contains the lab report.
+
+## Brute force
+
+Question: How much time does it take to run the algorithm for n = 16 objects?
+
+Answer: bruteforce: 0.308 sec elapsed
+
+```{r eval=FALSE}
+library("tictoc")
+tic("bruteforce")
+bfk <- brute_force_knapsack(x = knapsack_objects[1:16,], W = 3500)
+toc()
+```
+
+## Dynamic programming
+
+Question: How much time does it take to run the algorithm for n = 500 objects? 
+
+Answer: dynamicprogramming: 0.75 sec elapsed
+
+```{r eval=FALSE}
+tic("dynamicprogramming")
+bfk <- dynamic_knapsack(x = knapsack_objects[1:500,], W = 3500)
+toc()
+```
+
+## Greedy heuristic
+
+Question: How much time does it take to run the algorithm for n = 1.000.000 objects?
+
+Answer: greedyheuristic: 0.177 sec elapsed
+
+```{r eval=FALSE}
+tic("greedyheuristic")
+bfk <- greedy_knapsack(x = knapsack_objects[1:1000000,], W = 3500)
+toc()
+```
+
+## Code profiling and optimization
+
+Question: What performance gain could you get by trying to improve your code?
+
+Answer: 
+
+## Parallelize brute force
+
+Question: What performance gain could you get by parallelizing the brute force search?
+
+Answer: 

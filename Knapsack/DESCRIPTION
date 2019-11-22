@@ -9,4 +9,7 @@ Description: The algorithms used of solving the knapsack problem are the brute f
 License: MIT License
 RoxygenNote: 6.1.1
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat
+VignetteBuilder: knitr
